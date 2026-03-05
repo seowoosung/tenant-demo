@@ -21,6 +21,13 @@ export const config = {
 };
 
 export default function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+
+  // ✅ Android App Links / iOS Universal Links 등은 반드시 루트에서 서빙되어야 함
+  if (pathname.startsWith("/.well-known/")) {
+    return NextResponse.next();
+  }
+
   const host = req.headers.get("host") ?? "";
   const tenant = getTenantFromHost(host);
 
