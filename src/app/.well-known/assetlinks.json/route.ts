@@ -14,7 +14,7 @@ const TENANT_MAP: Record<
 
 function tenantFromHost(host: string | null) {
   if (!host) return null;
-  const hostname = host.split(":")[0]; // beta.bananatests.com
+  const hostname = host.split(":")[0];
   const parts = hostname.split(".");
   return parts.length >= 3 ? parts[0] : null;
 }
